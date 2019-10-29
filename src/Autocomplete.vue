@@ -46,7 +46,7 @@ export default {
     return {
       searchText: '',
       showList: false,
-      cursor: -1,
+      cursor: 0,
       internalItems: this.items || []
     }
   },
@@ -61,7 +61,7 @@ export default {
   methods: {
     inputChange () {
       this.showList = true
-      this.cursor = -1
+      this.cursor = 0
       this.onSelectItem(null, 'inputChange')
       utils.callUpdateItems(this.searchText, this.updateItems)
       this.$emit('change', this.searchText)
@@ -103,7 +103,7 @@ export default {
           if (this.inverted) {
             this.cursor = this.internalItems.length - 1;
           } else {
-            this.cursor = 1;
+            this.cursor = 0;
           }
       } else {
         this.cursor = 0;
@@ -115,14 +115,14 @@ export default {
     },
 
     keyUp (e) {
-      if (this.cursor > -1) {
+      if (this.cursor > 0) {
         this.cursor--
         this.itemView(this.$el.getElementsByClassName('v-autocomplete-list-item')[this.cursor])
       }
     },
 
     keyDown (e) {
-      if (this.cursor < this.internalItems.length) {
+      if (this.cursor < this.internalItems.length - 1) {
         this.cursor++
         this.itemView(this.$el.getElementsByClassName('v-autocomplete-list-item')[this.cursor])
       }
