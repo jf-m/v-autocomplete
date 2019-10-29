@@ -98,9 +98,15 @@ export default {
     },
 
     setItems (items) {
-      this.internalItems = items || []
-      if (this.inverted) {
-        this.cursor = this.internalItems.length;
+      this.internalItems = items || [];
+      if (this.internalItems.length  > 0){
+          if (this.inverted) {
+            this.cursor = this.internalItems.length - 1;
+          } else {
+            this.cursor = 1;
+          }
+      } else {
+        this.cursor = 0;
       }
     },
 
